@@ -1,1 +1,6 @@
 @import "~bootstrap/dist/css/bootstrap.css";
+
+.no-border {
+  border: 0;
+  box-shadow: none;
+}

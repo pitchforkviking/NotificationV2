@@ -12,31 +12,287 @@
 <!--Main-->
 <main role="main" class="container">
 
-  <div class="my-3 p-3 bg-white rounded box-shadow">
-    <h6 class="border-bottom border-gray pb-2 mb-0">Broadcast</h6>
-    <div class="media text-muted pt-3">
-      <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-        <div class="d-flex justify-content-between align-items-center w-100">
-          <strong class="text-gray-dark">@Handle</strong>
-          <a href="#">Send</a>
-        </div>
-        <span class="d-block">iOS | Android</span>
-      </div>
-    </div>
-  </div>
+  <ngb-tabset [justify]="currentJustify">
 
-  <div class="my-3 p-3 bg-white rounded box-shadow">
-    <h6 class="border-bottom border-gray pb-2 mb-0">Send</h6>
-    <div class="media text-muted pt-3">
-      <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-        <div class="d-flex justify-content-between align-items-center w-100">
-          <strong class="text-gray-dark">@Handle</strong>
-          <a href="#">Send</a>
+    <ngb-tab title="Broadcast">
+      <ng-template ngbTabContent>
+
+        <div class="media text-muted pt-3">
+          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <div class="d-flex justify-content-between align-items-center w-100">
+
+              <select class="custom-select d-block w-100 form-control" id="notification-type" required="" ngbTooltip="Kind of Notification e.g. Push or In-App" [(ngModel)]="notification.Kind">
+                <option value="">Choose a kind...</option>
+                <option *ngFor="let notificationKind of notificationKinds" [ngValue]="notificationKind" ngDefaultControl>{{ notificationKind }}</option>
+              </select>
+
+            </div>
+          </div>
         </div>
-        <span class="d-block">Android</span>
-      </div>
-    </div>    
-  </div>
+
+        <div class="media text-muted pt-3">
+          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <div class="d-flex justify-content-between align-items-center w-100">
+
+              <select class="custom-select d-block w-100 form-control" id="notification-type" required="" ngbTooltip="Type of Notification e.g. Badge or Quiz" [(ngModel)]="notification.Type">
+                <option value="">Choose a type...</option>
+                <option *ngFor="let notificationType of notificationTypes" [ngValue]="notificationType" ngDefaultControl>{{ notificationType }}</option>
+              </select>
+
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="notification?.Type === 'Reward'" class="media text-muted pt-3">
+          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <div class="d-flex justify-content-between align-items-center w-100">
+
+              <select class="custom-select d-block w-100 form-control" id="notification-reward" required="" ngbTooltip="Type of Reward e.g. Badges or Coupons">
+                <option value="">Choose a reward...</option>
+                <option ngDefaultControl>$10 Coupon for KFC</option>
+              </select>
+
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="notification?.Type === 'Badge'" class="media text-muted pt-3">
+          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <div class="d-flex justify-content-between align-items-center w-100">
+
+              <select class="custom-select d-block w-100 form-control" id="notification-reward" required="" ngbTooltip="Type of Reward e.g. Badges or Coupons">
+                <option value="">Choose a badge...</option>
+                <option ngDefaultControl>Fit to Fly</option>
+              </select>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="media text-muted pt-3">
+          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <div class="d-flex justify-content-between align-items-center w-100">
+              <input [(ngModel)]="notification.Title" class="form-control" id="notification-title" type="text" placeholder="Notification Title" ngbTooltip="Notification Title e.g. Enthu Cookie" ngDefaultControl>
+            </div>
+          </div>
+        </div>
+
+        <div class="media text-muted pt-3">
+          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <div class="d-flex justify-content-between align-items-center w-100">
+              <input [(ngModel)]="notification.Description" class="form-control" id="notification-description" type="text" placeholder="Notification Description" ngbTooltip="Notification Description e.g. First Comment on Collaborate" ngDefaultControl>
+            </div>
+          </div>
+        </div>
+
+        <div class="media text-muted pt-3">
+          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <div class="d-flex justify-content-between align-items-center w-100">
+
+              <button class="btn btn-primary btn-block" type="submit" (click)="broadcast()">Send to Everyone</button>
+
+            </div>
+          </div>
+        </div>
+
+      </ng-template>
+    </ngb-tab>
+
+    <ngb-tab title="Multicast">      
+      <ng-template ngbTabContent>
+
+        <div class="media text-muted pt-3">
+          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <div class="d-flex justify-content-between align-items-center w-100">
+
+              <select class="custom-select d-block w-100 form-control" id="notification-type" required="" ngbTooltip="Kind of Notification e.g. Push or In-App" [(ngModel)]="notification.Kind">
+                <option value="">Choose a kind...</option>
+                <option *ngFor="let notificationKind of notificationKinds" [ngValue]="notificationKind" ngDefaultControl>{{ notificationKind }}</option>
+              </select>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="media text-muted pt-3">
+          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <div class="d-flex justify-content-between align-items-center w-100">
+
+              <select class="custom-select d-block w-100 form-control" id="notification-type" required="" ngbTooltip="Type of Notification e.g. Badge or Quiz" [(ngModel)]="notification.Type">
+                <option value="">Choose a type...</option>
+                <option *ngFor="let notificationType of notificationTypes" [ngValue]="notificationType" ngDefaultControl>{{ notificationType }}</option>
+              </select>
+
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="notification?.Type === 'Reward'" class="media text-muted pt-3">
+          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <div class="d-flex justify-content-between align-items-center w-100">
+
+              <select class="custom-select d-block w-100 form-control" id="notification-reward" required="" ngbTooltip="Type of Reward e.g. Badges or Coupons">
+                <option value="">Choose a reward...</option>
+                <option ngDefaultControl>$10 Coupon for KFC</option>
+              </select>
+
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="notification?.Type === 'Badge'" class="media text-muted pt-3">
+          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <div class="d-flex justify-content-between align-items-center w-100">
+
+              <select class="custom-select d-block w-100 form-control" id="notification-reward" required="" ngbTooltip="Type of Reward e.g. Badges or Coupons">
+                <option value="">Choose a badge...</option>
+                <option ngDefaultControl>Fit to Fly</option>
+              </select>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="media text-muted pt-3">
+          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <div class="d-flex justify-content-between align-items-center w-100">
+
+              <select class="custom-select d-block w-100 form-control" id="notification-group" required="" ngbTooltip="Target Group e.g. APAC or Beauty">
+                <option value="">Choose a group...</option>
+                <option>APAC</option>
+                <option>IMEA</option>
+                <option>Beauty</option>
+                <option>Homecare</option>
+              </select>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="media text-muted pt-3">
+          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <div class="d-flex justify-content-between align-items-center w-100">
+              <input [(ngModel)]="notification.Title" class="form-control" id="notification-title" type="text" placeholder="Notification Title" ngbTooltip="Notification Title e.g. Enthu Cookie" ngDefaultControl>
+            </div>
+          </div>
+        </div>
+
+        <div class="media text-muted pt-3">
+          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <div class="d-flex justify-content-between align-items-center w-100">
+              <input [(ngModel)]="notification.Description" class="form-control" id="notification-description" type="text" placeholder="Notification Description" ngbTooltip="Notification Description e.g. First Comment on Collaborate" ngDefaultControl>
+            </div>
+          </div>
+        </div>
+
+        <div class="media text-muted pt-3">
+          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <div class="d-flex justify-content-between align-items-center w-100">
+
+              <button class="btn btn-primary btn-block" type="submit" (click)="multicast()">Send to Group</button>
+
+            </div>
+          </div>
+        </div>
+
+      </ng-template>
+    </ngb-tab>
+
+    <ngb-tab title="Unicast">
+      <ng-template ngbTabContent>
+
+        <div class="media text-muted pt-3">
+          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <div class="d-flex justify-content-between align-items-center w-100">
+
+              <select class="custom-select d-block w-100 form-control" id="notification-type" required="" ngbTooltip="Kind of Notification e.g. Push or In-App" [(ngModel)]="notification.Kind">
+                <option value="">Choose a kind...</option>
+                <option *ngFor="let notificationKind of notificationKinds" [ngValue]="notificationKind" ngDefaultControl>{{ notificationKind }}</option>
+              </select>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="media text-muted pt-3">
+          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <div class="d-flex justify-content-between align-items-center w-100">
+
+              <select class="custom-select d-block w-100 form-control" id="notification-type" required="" ngbTooltip="Type of Notification e.g. Badge or Quiz" [(ngModel)]="notification.Type">
+                <option value="">Choose a type...</option>
+                <option *ngFor="let notificationType of notificationTypes" [ngValue]="notificationType" ngDefaultControl>{{ notificationType }}</option>
+              </select>
+
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="notification?.Type === 'Reward'" class="media text-muted pt-3">
+          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <div class="d-flex justify-content-between align-items-center w-100">
+
+              <select class="custom-select d-block w-100 form-control" id="notification-reward" required="" ngbTooltip="Type of Reward e.g. Badges or Coupons">
+                <option value="">Choose a reward...</option>
+                <option ngDefaultControl>$10 Coupon for KFC</option>
+              </select>
+
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="notification?.Type === 'Badge'" class="media text-muted pt-3">
+          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <div class="d-flex justify-content-between align-items-center w-100">
+
+              <select class="custom-select d-block w-100 form-control" id="notification-reward" required="" ngbTooltip="Type of Reward e.g. Badges or Coupons">
+                <option value="">Choose a badge...</option>
+                <option ngDefaultControl>Fit to Fly</option>
+              </select>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="media text-muted pt-3">
+          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <div class="d-flex justify-content-between align-items-center w-100">
+
+              <input [(ngModel)]="notification.TargetUser" class="form-control" id="notification-tag" type="text" placeholder="User Tag" ngbTooltip="User Tags e.g. @User_10624 or @Group_1134">
+
+            </div>
+          </div>
+        </div>
+
+        <div class="media text-muted pt-3">
+          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <div class="d-flex justify-content-between align-items-center w-100">
+              <input [(ngModel)]="notification.Title" class="form-control" id="notification-title" type="text" placeholder="Notification Title" ngbTooltip="Notification Title e.g. Enthu Cookie" ngDefaultControl>
+            </div>
+          </div>
+        </div>
+
+        <div class="media text-muted pt-3">
+          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <div class="d-flex justify-content-between align-items-center w-100">
+              <input [(ngModel)]="notification.Description" class="form-control" id="notification-description" type="text" placeholder="Notification Description" ngbTooltip="Notification Description e.g. First Comment on Collaborate" ngDefaultControl>
+            </div>
+          </div>
+        </div>
+
+        <div class="media text-muted pt-3">
+          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <div class="d-flex justify-content-between align-items-center w-100">
+
+              <button class="btn btn-primary btn-block" type="submit" (click)="unicast()">Send to User</button>
+
+            </div>
+          </div>
+        </div>
+
+      </ng-template>
+    </ngb-tab>
+
+  </ngb-tabset>
 
 </main>
 
