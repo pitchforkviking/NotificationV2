@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { DashboardService } from '../dashboard.service';
-import { Notification } from '../notification';
 
 @Component({
   selector: 'app-dashboard',

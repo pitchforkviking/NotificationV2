@@ -23,7 +23,7 @@
 
               <select class="custom-select d-block w-100 form-control" id="notification-type" required="" ngbTooltip="Kind of Notification e.g. Push or In-App" [(ngModel)]="notification.Kind">
                 <option value="">Choose a kind...</option>
-                <option *ngFor="let notificationKind of notificationKinds" [ngValue]="notificationKind" ngDefaultControl>{{ notificationKind }}</option>
+                <option *ngFor="let kind of kinds" [ngValue]="kind" ngDefaultControl>{{ kind }}</option>
               </select>
 
             </div>
@@ -36,7 +36,46 @@
 
               <select class="custom-select d-block w-100 form-control" id="notification-type" required="" ngbTooltip="Type of Notification e.g. Badge or Quiz" [(ngModel)]="notification.Type">
                 <option value="">Choose a type...</option>
-                <option *ngFor="let notificationType of notificationTypes" [ngValue]="notificationType" ngDefaultControl>{{ notificationType }}</option>
+                <option *ngFor="let type of types" [ngValue]="type" ngDefaultControl>{{ type }}</option>
+              </select>
+
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="notification?.Type === 'Poll'" class="media text-muted pt-3">
+          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <div class="d-flex justify-content-between align-items-center w-100">
+
+              <select class="custom-select d-block w-100 form-control" id="notification-poll" required="" ngbTooltip="Poll e.g. Poll1 or Poll2" [(ngModel)]="notification.PollId">
+                <option value="">Choose a poll...</option>
+                <option *ngFor="let poll of polls" [ngValue]="poll.Id" ngDefaultControl>{{ poll.Name }}</option>
+              </select>
+
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="notification?.Type === 'Forum'" class="media text-muted pt-3">
+          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <div class="d-flex justify-content-between align-items-center w-100">
+
+              <select class="custom-select d-block w-100 form-control" id="notification-forum" required="" ngbTooltip="Forum e.g. Forum1 or Forum2" [(ngModel)]="notification.ForumId">
+                <option value="">Choose a forum...</option>
+                <option *ngFor="let forum of forums" [ngValue]="forum.Id" ngDefaultControl>{{ forum.Name }}</option>
+              </select>
+
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="notification?.Type === 'Topic'" class="media text-muted pt-3">
+          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <div class="d-flex justify-content-between align-items-center w-100">
+
+              <select class="custom-select d-block w-100 form-control" id="notification-reward" required="" ngbTooltip="Topic e.g. Topic1 or Topic2" [(ngModel)]="notification.TopicId">
+                <option value="">Choose a topic...</option>
+                <option *ngFor="let topic of topics" [ngValue]="topic.Id" ngDefaultControl>{{ topic.Name }}</option>
               </select>
 
             </div>
@@ -47,9 +86,9 @@
           <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
             <div class="d-flex justify-content-between align-items-center w-100">
 
-              <select class="custom-select d-block w-100 form-control" id="notification-reward" required="" ngbTooltip="Type of Reward e.g. Badges or Coupons">
+              <select class="custom-select d-block w-100 form-control" id="notification-reward" required="" ngbTooltip="Reward e.g. Coupon for Starbucks or Voucher for Walmart" [(ngModel)]="notification.RewardId">
                 <option value="">Choose a reward...</option>
-                <option ngDefaultControl>$10 Coupon for KFC</option>
+                <option *ngFor="let reward of rewards" [ngValue]="reward.Id" ngDefaultControl>{{ reward.Name }}</option>
               </select>
 
             </div>
@@ -60,9 +99,9 @@
           <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
             <div class="d-flex justify-content-between align-items-center w-100">
 
-              <select class="custom-select d-block w-100 form-control" id="notification-reward" required="" ngbTooltip="Type of Reward e.g. Badges or Coupons">
+              <select class="custom-select d-block w-100 form-control" id="notification-reward" required="" ngbTooltip="Badge e.g. Fit to Fly or Comet Rider" [(ngModel)]="notification.BadgeId">
                 <option value="">Choose a badge...</option>
-                <option ngDefaultControl>Fit to Fly</option>
+                <option *ngFor="let badge of badges" [ngValue]="badge.Id" ngDefaultControl>{{ badge.Name }}</option>
               </select>
 
             </div>
@@ -107,7 +146,7 @@
 
               <select class="custom-select d-block w-100 form-control" id="notification-type" required="" ngbTooltip="Kind of Notification e.g. Push or In-App" [(ngModel)]="notification.Kind">
                 <option value="">Choose a kind...</option>
-                <option *ngFor="let notificationKind of notificationKinds" [ngValue]="notificationKind" ngDefaultControl>{{ notificationKind }}</option>
+                <option *ngFor="let kind of kinds" [ngValue]="kind" ngDefaultControl>{{ kind }}</option>
               </select>
 
             </div>
@@ -120,7 +159,46 @@
 
               <select class="custom-select d-block w-100 form-control" id="notification-type" required="" ngbTooltip="Type of Notification e.g. Badge or Quiz" [(ngModel)]="notification.Type">
                 <option value="">Choose a type...</option>
-                <option *ngFor="let notificationType of notificationTypes" [ngValue]="notificationType" ngDefaultControl>{{ notificationType }}</option>
+                <option *ngFor="let type of types" [ngValue]="type" ngDefaultControl>{{ type }}</option>
+              </select>
+
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="notification?.Type === 'Poll'" class="media text-muted pt-3">
+          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <div class="d-flex justify-content-between align-items-center w-100">
+
+              <select class="custom-select d-block w-100 form-control" id="notification-poll" required="" ngbTooltip="Poll e.g. Poll1 or Poll2" [(ngModel)]="notification.PollId">
+                <option value="">Choose a poll...</option>
+                <option *ngFor="let poll of polls" [ngValue]="poll.Id" ngDefaultControl>{{ poll.Name }}</option>
+              </select>
+
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="notification?.Type === 'Forum'" class="media text-muted pt-3">
+          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <div class="d-flex justify-content-between align-items-center w-100">
+
+              <select class="custom-select d-block w-100 form-control" id="notification-forum" required="" ngbTooltip="Forum e.g. Forum1 or Forum2" [(ngModel)]="notification.ForumId">
+                <option value="">Choose a forum...</option>
+                <option *ngFor="let forum of forums" [ngValue]="forum.Id" ngDefaultControl>{{ forum.Name }}</option>
+              </select>
+
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="notification?.Type === 'Topic'" class="media text-muted pt-3">
+          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <div class="d-flex justify-content-between align-items-center w-100">
+
+              <select class="custom-select d-block w-100 form-control" id="notification-topic" required="" ngbTooltip="Topic e.g. Topic1 or Topic2" [(ngModel)]="notification.TopicId">
+                <option value="">Choose a topic...</option>
+                <option *ngFor="let topic of topics" [ngValue]="topic.Id" ngDefaultControl>{{ topic.Name }}</option>
               </select>
 
             </div>
@@ -131,9 +209,9 @@
           <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
             <div class="d-flex justify-content-between align-items-center w-100">
 
-              <select class="custom-select d-block w-100 form-control" id="notification-reward" required="" ngbTooltip="Type of Reward e.g. Badges or Coupons">
+              <select class="custom-select d-block w-100 form-control" id="notification-reward" required="" ngbTooltip="Reward e.g. Coupon for Starbucks or Voucher for Walmart" [(ngModel)]="notification.RewardId">
                 <option value="">Choose a reward...</option>
-                <option ngDefaultControl>$10 Coupon for KFC</option>
+                <option *ngFor="let reward of rewards" [ngValue]="reward.Id" ngDefaultControl>{{ reward.Name }}</option>
               </select>
 
             </div>
@@ -144,9 +222,9 @@
           <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
             <div class="d-flex justify-content-between align-items-center w-100">
 
-              <select class="custom-select d-block w-100 form-control" id="notification-reward" required="" ngbTooltip="Type of Reward e.g. Badges or Coupons">
+              <select class="custom-select d-block w-100 form-control" id="notification-badge" required="" ngbTooltip="Badge e.g. Fit to Fly or Comet Rider" [(ngModel)]="notification.BadgeId">
                 <option value="">Choose a badge...</option>
-                <option ngDefaultControl>Fit to Fly</option>
+                <option *ngFor="let badge of badges" [ngValue]="badge.Id" ngDefaultControl>{{ badge.Name }}</option>
               </select>
 
             </div>
@@ -157,12 +235,9 @@
           <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
             <div class="d-flex justify-content-between align-items-center w-100">
 
-              <select class="custom-select d-block w-100 form-control" id="notification-group" required="" ngbTooltip="Target Group e.g. APAC or Beauty">
+              <select class="custom-select d-block w-100 form-control" id="notification-group" required="" ngbTooltip="Group e.g. Group1 or Group2" [(ngModel)]="notification.TargetGroup">
                 <option value="">Choose a group...</option>
-                <option>APAC</option>
-                <option>IMEA</option>
-                <option>Beauty</option>
-                <option>Homecare</option>
+                <option *ngFor="let group of groups" [ngValue]="group.Id" ngDefaultControl>{{ group.Name }}</option>
               </select>
 
             </div>
@@ -189,7 +264,7 @@
           <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
             <div class="d-flex justify-content-between align-items-center w-100">
 
-              <button class="btn btn-primary btn-block" type="submit" (click)="multicast()">Send to Group</button>
+              <button class="btn btn-primary btn-block" type="submit" (click)="broadcast()">Send to Everyone</button>
 
             </div>
           </div>
@@ -207,7 +282,7 @@
 
               <select class="custom-select d-block w-100 form-control" id="notification-type" required="" ngbTooltip="Kind of Notification e.g. Push or In-App" [(ngModel)]="notification.Kind">
                 <option value="">Choose a kind...</option>
-                <option *ngFor="let notificationKind of notificationKinds" [ngValue]="notificationKind" ngDefaultControl>{{ notificationKind }}</option>
+                <option *ngFor="let kind of kinds" [ngValue]="kind" ngDefaultControl>{{ kind }}</option>
               </select>
 
             </div>
@@ -220,7 +295,46 @@
 
               <select class="custom-select d-block w-100 form-control" id="notification-type" required="" ngbTooltip="Type of Notification e.g. Badge or Quiz" [(ngModel)]="notification.Type">
                 <option value="">Choose a type...</option>
-                <option *ngFor="let notificationType of notificationTypes" [ngValue]="notificationType" ngDefaultControl>{{ notificationType }}</option>
+                <option *ngFor="let type of types" [ngValue]="type" ngDefaultControl>{{ type }}</option>
+              </select>
+
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="notification?.Type === 'Poll'" class="media text-muted pt-3">
+          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <div class="d-flex justify-content-between align-items-center w-100">
+
+              <select class="custom-select d-block w-100 form-control" id="notification-poll" required="" ngbTooltip="Poll e.g. Poll1 or Poll2" [(ngModel)]="notification.PollId">
+                <option value="">Choose a poll...</option>
+                <option *ngFor="let poll of polls" [ngValue]="poll.Id" ngDefaultControl>{{ poll.Name }}</option>
+              </select>
+
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="notification?.Type === 'Forum'" class="media text-muted pt-3">
+          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <div class="d-flex justify-content-between align-items-center w-100">
+
+              <select class="custom-select d-block w-100 form-control" id="notification-forum" required="" ngbTooltip="Forum e.g. Forum1 or Forum2" [(ngModel)]="notification.ForumId">
+                <option value="">Choose a forum...</option>
+                <option *ngFor="let forum of forums" [ngValue]="forum.Id" ngDefaultControl>{{ forum.Name }}</option>
+              </select>
+
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="notification?.Type === 'Topic'" class="media text-muted pt-3">
+          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <div class="d-flex justify-content-between align-items-center w-100">
+
+              <select class="custom-select d-block w-100 form-control" id="notification-topic" required="" ngbTooltip="Topic e.g. Topic1 or Topic2" [(ngModel)]="notification.TopicId">
+                <option value="">Choose a topic...</option>
+                <option *ngFor="let topic of topics" [ngValue]="topic.Id" ngDefaultControl>{{ topic.Name }}</option>
               </select>
 
             </div>
@@ -231,9 +345,9 @@
           <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
             <div class="d-flex justify-content-between align-items-center w-100">
 
-              <select class="custom-select d-block w-100 form-control" id="notification-reward" required="" ngbTooltip="Type of Reward e.g. Badges or Coupons">
+              <select class="custom-select d-block w-100 form-control" id="notification-reward" required="" ngbTooltip="Reward e.g. Coupon for Starbucks or Voucher for Walmart" [(ngModel)]="notification.RewardId">
                 <option value="">Choose a reward...</option>
-                <option ngDefaultControl>$10 Coupon for KFC</option>
+                <option *ngFor="let reward of rewards" [ngValue]="reward.Id" ngDefaultControl>{{ reward.Name }}</option>
               </select>
 
             </div>
@@ -244,9 +358,9 @@
           <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
             <div class="d-flex justify-content-between align-items-center w-100">
 
-              <select class="custom-select d-block w-100 form-control" id="notification-reward" required="" ngbTooltip="Type of Reward e.g. Badges or Coupons">
+              <select class="custom-select d-block w-100 form-control" id="notification-badge" required="" ngbTooltip="Badge e.g. Fit to Fly or Comet Rider" [(ngModel)]="notification.BadgeId">
                 <option value="">Choose a badge...</option>
-                <option ngDefaultControl>Fit to Fly</option>
+                <option *ngFor="let badge of badges" [ngValue]="badge.Id" ngDefaultControl>{{ badge.Name }}</option>
               </select>
 
             </div>
@@ -257,7 +371,10 @@
           <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
             <div class="d-flex justify-content-between align-items-center w-100">
 
-              <input [(ngModel)]="notification.TargetUser" class="form-control" id="notification-tag" type="text" placeholder="User Tag" ngbTooltip="User Tags e.g. @User_10624 or @Group_1134">
+              <select class="custom-select d-block w-100 form-control" id="notification-user" required="" ngbTooltip="User e.g. User1 or User2" [(ngModel)]="notification.TargetUser">
+                <option value="">Choose a user...</option>
+                <option *ngFor="let user of users" [ngValue]="user.Id" ngDefaultControl>{{ user.Name }}</option>
+              </select>
 
             </div>
           </div>
@@ -283,7 +400,7 @@
           <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
             <div class="d-flex justify-content-between align-items-center w-100">
 
-              <button class="btn btn-primary btn-block" type="submit" (click)="unicast()">Send to User</button>
+              <button class="btn btn-primary btn-block" type="submit" (click)="broadcast()">Send to Everyone</button>
 
             </div>
           </div>

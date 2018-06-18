@@ -2,12 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\app",
-    "\\src\\app\\dashboard",
-    "\\src\\app\\login",
-    "\\src\\app\\notification",
-    "\\src\\app\\registration"
+    "\\src\\app"
   ],
-  "SelectedNode": "\\src\\app\\registration\\registration.component.html",
+  "SelectedNode": "\\src\\app\\app.module.ts",
   "PreviewInSolutionExplorer": false
 }
